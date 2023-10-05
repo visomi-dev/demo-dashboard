@@ -3,4 +3,4 @@
 
 local_branch_name="$(git rev-parse --abbrev-ref HEAD)"
 
-npm run branchlint $local_branch_name
+bun run branchlint $local_branch_name

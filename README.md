@@ -42,13 +42,13 @@ cp .env.example .env
 ### Migrate the database and run the seeds
 
 ```sh
-npm run prisma migrate dev
+bun run prisma migrate dev
 ```
 
 ### Run the server
 
 ```sh
-npm run dev
+bun run dev
 ```
 
 ### Happy coding!
