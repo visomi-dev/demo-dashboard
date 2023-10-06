@@ -8,4 +8,10 @@ export default defineConfig({
   build: {
     outDir: '../../dist/client',
   },
+  resolve: {
+    alias: {
+      '@/client/utils': 'src/client/app/utils',
+      '@/client/components': 'src/client/app/components',
+    },
+  },
 });

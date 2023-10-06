@@ -30,14 +30,14 @@ const authenticatedRoutes: RouteDefinition[] = [
 ];
 
 export const Router: Component = () => {
-  const [auth] = useAuth();
+  const auth = useAuth();
 
   const AuthenticatedRoutes = useRoutes(authenticatedRoutes);
   const AnonymousRoutes = useRoutes(anonymousRoutes);
 
   return (
     <SolidRouter>
-      {auth.user == null ? <AnonymousRoutes /> : <AuthenticatedRoutes />}
+      {auth.state.user == null ? <AnonymousRoutes /> : <AuthenticatedRoutes />}
     </SolidRouter>
   );
 };

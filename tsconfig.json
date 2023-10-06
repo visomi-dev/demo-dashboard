@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "baseUrl": "./",
     "strict": true,
     "target": "ES2021",
     "module": "ES2022",
@@ -14,7 +15,8 @@
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true,
     "paths": {
-      "~/server": ["./server/index.ts"]
+      "@/client/utils/*": ["./src/client/app/utils/*"],
+      "@/client/components/*": ["src/client/app/components/*"]
     }
   },
   "include": ["vite.config.ts", "src/**/*"]

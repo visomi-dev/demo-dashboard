@@ -4,6 +4,6 @@ import { jwt } from '@elysiajs/jwt';
 export const setup = new Elysia().use(
   jwt({
     name: 'jwt',
-    secret: import.meta.env.SECRET,
+    secret: import.meta.env.SESSION_SECRET,
   }),
 );

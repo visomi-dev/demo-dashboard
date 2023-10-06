@@ -1,4 +1,7 @@
 {
   "extends": ["../../.eslintrc.json", "plugin:solid/recommended"],
-  "plugins": ["solid"]
+  "plugins": ["solid"],
+  "rules": {
+    "@typescript-eslint/strict-boolean-expressions": "off"
+  }
 }
