@@ -10,8 +10,9 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      '@/client/utils': 'src/client/app/utils',
-      '@/client/components': 'src/client/app/components',
+      '@/client/stores': '/app/stores',
+      '@/client/utils': '/app/utils',
+      '@/client/components': '/app/components',
     },
   },
 });

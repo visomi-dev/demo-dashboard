@@ -1,7 +1,7 @@
 import { type Component } from 'solid-js';
 
 export interface MenuItem {
-  icon: Component<{ class: string }>;
+  icon: Component<{ class: string; classList?: Record<string, boolean> }>;
   iconClass?: string;
   label: string;
   link: string;

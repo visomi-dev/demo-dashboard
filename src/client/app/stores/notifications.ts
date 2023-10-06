@@ -7,7 +7,9 @@ export interface State {
 }
 
 export interface Actions {
-  add: (notification: Notification) => void;
+  add: (
+    notification: Partial<Notification> & Pick<Notification, 'title'>,
+  ) => void;
   delete: (timestamp: number) => void;
 }
 
@@ -25,17 +27,21 @@ export const actions: Actions = {
     update((state) => {
       if (duration) {
         setTimeout(() => {
-          const itemIndex = state.list.findIndex(
-            (notification) => notification.timestamp === timestamp,
-          );
+          update((state) => {
+            const list = [...state.list];
 
-          if (itemIndex > 0) {
-            state.list.splice(itemIndex, 1);
-          }
+            const itemIndex = list.findIndex(
+              (notification) => notification.timestamp === timestamp,
+            );
 
-          update((state) => ({
-            list: [...state.list],
-          }));
+            if (itemIndex > -1) {
+              list.splice(itemIndex, 1);
+            }
+
+            return {
+              list: [...list],
+            };
+          });
         }, duration);
       }
 
@@ -53,15 +59,23 @@ export const actions: Actions = {
   },
   delete: (timestamp: number) => {
     update((state) => {
-      const itemIndex = state.list.findIndex(
+      console.log('delete', timestamp);
+
+      const list = [...state.list];
+
+      const itemIndex = list.findIndex(
         (notification) => notification.timestamp === timestamp,
       );
 
-      if (itemIndex > 0) {
-        state.list.splice(itemIndex, 1);
+      console.log('itemIndex', itemIndex);
+
+      if (itemIndex > -1) {
+        list.splice(itemIndex, 1);
       }
 
-      return { list: [...state.list] };
+      console.log('list', list);
+
+      return { list: [...list] };
     });
   },
 };

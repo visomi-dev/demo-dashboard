@@ -1,7 +1,6 @@
 import { type Component, createMemo, For } from 'solid-js';
 import { Link, useLocation } from '@solidjs/router';
 import { HiOutlineBars3, HiOutlineChartPie } from 'solid-icons/hi';
-import clsx from 'clsx';
 
 import { type MenuItem } from '../../entities/ui';
 
@@ -36,12 +35,10 @@ export const NavbarMenu: Component = () => {
             <li class="flex h-full flex-1 items-center justify-center">
               <Link
                 href={item.link}
-                class={clsx(
-                  'navbar-menu-item focus:ring-primary flex items-center justify-center rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-black',
-                  {
-                    'bg-slate-900 !text-white': location.pathname === item.link,
-                  },
-                )}
+                class="navbar-menu-item focus:ring-primary flex items-center justify-center rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-black"
+                classList={{
+                  'bg-slate-900 !text-white': location.pathname === item.link,
+                }}
               >
                 <item.icon class="h-8 w-8" />
               </Link>

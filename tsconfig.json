@@ -15,8 +15,11 @@
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true,
     "paths": {
+      "@/*": ["./src/*"],
+      "@/server/*": ["./src/server/app/*"],
+      "@/client/*": ["./src/client/app/*"],
       "@/client/utils/*": ["./src/client/app/utils/*"],
-      "@/client/components/*": ["src/client/app/components/*"]
+      "@/client/components/*": ["./src/client/app/components/*"]
     }
   },
   "include": ["vite.config.ts", "src/**/*"]

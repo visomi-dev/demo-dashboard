@@ -1,5 +1,4 @@
 import { type Component, For } from 'solid-js';
-import clsx from 'clsx';
 import { useNotifications } from '../../stores/notifications';
 import { Button } from '../ui/button';
 import { HiOutlineXMark } from 'solid-icons/hi';
@@ -8,11 +7,18 @@ export const Notifications: Component = () => {
   const notifications = useNotifications();
 
   return (
-    <div class="fixed bottom-16 right-0 z-20 flex w-full items-center md:absolute md:bottom-auto md:top-0 md:w-fit">
+    <div
+      class="fixed right-0 z-20 flex w-full items-center md:absolute md:bottom-auto md:top-0 md:w-fit"
+      classList={{
+        'bottom-16': notifications.state.list.length > 0,
+        'bottom-0': notifications.state.list.length === 0,
+      }}
+    >
       <ul
-        class={clsx('w-full space-y-2 md:w-fit', {
-          'p-4': notifications.state.list.length,
-        })}
+        class="w-full space-y-2 md:w-fit"
+        classList={{
+          'p-4': notifications.state.list.length > 0,
+        }}
       >
         <For each={notifications.state.list}>
           {(notification) => (

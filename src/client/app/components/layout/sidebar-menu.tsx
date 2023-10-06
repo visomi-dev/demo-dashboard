@@ -55,21 +55,20 @@ export const SidebarMenu: Component = () => {
 
   return (
     <div
-      class={clsx('absolute md:relative', {
+      class="absolute md:relative"
+      classList={{
         'dark:bg-soft-gray inset-0 block h-screen w-screen bg-black bg-opacity-50 dark:bg-opacity-25 md:h-fit md:w-fit':
           sidebarMenuOpen(),
-      })}
+      }}
     >
       <aside
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         ref={element!}
-        class={clsx(
-          'relative z-30 flex h-screen flex-col overflow-y-auto overflow-x-hidden border-r-black bg-white transition-all dark:border-r-white dark:bg-black md:w-fit md:max-w-[16rem] md:border-r',
-          {
-            'w-0': !sidebarMenuOpen(),
-            'w-4/5': sidebarMenuOpen(),
-          },
-        )}
+        class="relative z-30 flex h-screen flex-col overflow-y-auto overflow-x-hidden border-r-black bg-white transition-all dark:border-r-white dark:bg-black md:w-fit md:max-w-[16rem] md:border-r"
+        classList={{
+          'w-0': !sidebarMenuOpen(),
+          'w-4/5': sidebarMenuOpen(),
+        }}
       >
         <img
           class="mx-auto w-32 p-4"
@@ -85,29 +84,25 @@ export const SidebarMenu: Component = () => {
                   <li class={clsx('flex w-full items-center', item.extraClass)}>
                     <Link
                       href={`${item.link}?${item.queryParams ?? ''}`}
-                      class={clsx(
-                        'sidebar-menu-item flex w-full items-center rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-slate-900 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-black md:gap-2',
-                        {
-                          'sidebar-menu-item-active bg-slate-900 !text-white':
-                            location.pathname === item.link,
-                        },
-                      )}
+                      class="sidebar-menu-item flex w-full items-center rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-slate-900 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-black md:gap-2"
+                      classList={{
+                        'sidebar-menu-item-active bg-slate-900 !text-white':
+                          location.pathname === item.link,
+                      }}
                       onClick={onClickOutside}
                     >
                       <item.icon
-                        class={clsx(
-                          'w-8',
-                          {
-                            'mr-2': sidebarMenuOpen,
-                          },
-                          item.iconClass,
-                        )}
+                        class={clsx('w-8', item.iconClass)}
+                        classList={{
+                          'mr-2': sidebarMenuOpen(),
+                        }}
                       />
 
                       <span
-                        class={clsx('overflow-hidden transition-all', {
+                        class="overflow-hidden transition-all"
+                        classList={{
                           'h-0 md:h-fit': !sidebarMenuOpen(),
-                        })}
+                        }}
                       >
                         {item.label}
                       </span>
