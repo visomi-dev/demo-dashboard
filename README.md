@@ -45,10 +45,11 @@ cp .env.example .env
 bun run prisma migrate dev
 ```
 
-### Run the server
+### Run the client dev server and server
 
 ```sh
-bun run dev
+bun run dev:client
+bun run dev:server
 ```
 
 ### Happy coding!
