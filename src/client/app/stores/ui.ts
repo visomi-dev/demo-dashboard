@@ -22,7 +22,7 @@ interface Actions {
   setLoading: (value: boolean) => void;
 }
 
-export const [store, update] = createStore<State>({
+const [store, update] = createStore<State>({
   theme: 'light',
   loading: false,
   sidebarMenuOpen: false,
@@ -34,7 +34,7 @@ export const [store, update] = createStore<State>({
   },
 });
 
-export const actions: Actions = {
+const actions: Actions = {
   toggleTheme: () => {
     update((state) => ({
       theme: state.theme === 'light' ? 'dark' : 'light',

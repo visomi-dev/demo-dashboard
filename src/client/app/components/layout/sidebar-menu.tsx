@@ -1,4 +1,4 @@
-import { type Component, For, createMemo, onCleanup, onMount } from 'solid-js';
+import { type Component, For, createMemo, Show } from 'solid-js';
 import { Link, useLocation } from '@solidjs/router';
 import {
   HiOutlineArrowLeftOnRectangle,
@@ -7,7 +7,7 @@ import {
 } from 'solid-icons/hi';
 import clsx from 'clsx';
 
-import { signOutPath } from '../../constants/routes';
+import { SIGN_OUT_PATH } from '../../constants/routes';
 
 import { useUI } from '../../stores/ui';
 import { useAuth } from '../../stores/auth';
@@ -39,25 +39,15 @@ export const SidebarMenu: Component = () => {
     return ui.state.sidebarMenuOpen;
   });
 
-  const onClickOutside = (event: MouseEvent): void => {
-    if (!element.contains(event.target as Node) && sidebarMenuOpen()) {
-      ui.actions.setSidebarMenuOpen(false);
-    }
+  const onClickOutside = (): void => {
+    ui.actions.setSidebarMenuOpen(false);
   };
-
-  onMount(() => {
-    document.addEventListener('click', onClickOutside);
-  });
-
-  onCleanup(() => {
-    document.removeEventListener('click', onClickOutside);
-  });
 
   return (
     <div
       class="absolute md:relative"
       classList={{
-        'dark:bg-soft-gray inset-0 block h-screen w-screen bg-black bg-opacity-50 dark:bg-opacity-25 md:h-fit md:w-fit':
+        'dark:bg-soft-gray z-20 inset-0 flex h-screen w-screen bg-black bg-opacity-50 dark:bg-opacity-25 md:h-fit md:w-fit':
           sidebarMenuOpen(),
       }}
     >
@@ -116,9 +106,10 @@ export const SidebarMenu: Component = () => {
           <nav class="flex flex-col p-4">
             <ul>
               <li
-                class={clsx('flex items-center', {
-                  'md:justify-center': sidebarMenuOpen,
-                })}
+                class="flex items-center"
+                classList={{
+                  'md:justify-center': sidebarMenuOpen(),
+                }}
               >
                 <a class="flex items-center gap-2 p-2">
                   <HiOutlineUser class="h-8 w-8" />
@@ -130,21 +121,23 @@ export const SidebarMenu: Component = () => {
               </li>
 
               <li
-                class={clsx('flex items-center', {
-                  'md:justify-center': sidebarMenuOpen,
-                })}
+                class="flex items-center"
+                classList={{
+                  'md:justify-center': sidebarMenuOpen(),
+                }}
               >
                 <Link
                   class="flex items-center gap-2 p-2"
-                  href={signOutPath}
+                  href={SIGN_OUT_PATH}
                   onClick={onClickOutside}
                 >
                   <HiOutlineArrowLeftOnRectangle class="h-8 w-8" />
 
                   <span
-                    class={clsx('overflow-hidden transition-all', {
+                    class="overflow-hidden transition-all"
+                    classList={{
                       'h-0 md:h-fit': !sidebarMenuOpen(),
-                    })}
+                    }}
                   >
                     Sign Out
                   </span>
@@ -154,6 +147,15 @@ export const SidebarMenu: Component = () => {
           </nav>
         </div>
       </aside>
+
+      <Show when={sidebarMenuOpen()}>
+        <div
+          class="h-full w-1/5 opacity-0 md:hidden"
+          onClick={() => {
+            onClickOutside();
+          }}
+        />
+      </Show>
     </div>
   );
 };

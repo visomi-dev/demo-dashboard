@@ -13,11 +13,11 @@ export interface Actions {
   delete: (timestamp: number) => void;
 }
 
-export const [store, update] = createStore<State>({
+const [store, update] = createStore<State>({
   list: [],
 });
 
-export const actions: Actions = {
+const actions: Actions = {
   add: ({
     timestamp = new Date().getTime(),
     canClose = true,
@@ -59,21 +59,15 @@ export const actions: Actions = {
   },
   delete: (timestamp: number) => {
     update((state) => {
-      console.log('delete', timestamp);
-
       const list = [...state.list];
 
       const itemIndex = list.findIndex(
         (notification) => notification.timestamp === timestamp,
       );
 
-      console.log('itemIndex', itemIndex);
-
       if (itemIndex > -1) {
         list.splice(itemIndex, 1);
       }
-
-      console.log('list', list);
 
       return { list: [...list] };
     });

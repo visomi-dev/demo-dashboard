@@ -49,7 +49,12 @@ export const NavbarMenu: Component = () => {
         <li class="col-start-4 flex h-full flex-1 items-center justify-center">
           <button
             class="flex items-center justify-center rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-slate-900 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-black"
-            onClick={ui.actions.toggleSidebarMenuOpen}
+            onClick={(event) => {
+              event.stopPropagation();
+              event.preventDefault();
+
+              ui.actions.toggleSidebarMenuOpen();
+            }}
           >
             <HiOutlineBars3 class="h-8 w-8" />
           </button>

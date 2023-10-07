@@ -6,13 +6,13 @@ export default defineConfig({
   root: 'src/client',
   plugins: [solidPlugin()],
   build: {
-    outDir: '../../dist/client',
+    outDir: '../../src/server/public',
   },
   resolve: {
     alias: {
+      '@/client': '/app',
       '@/client/stores': '/app/stores',
       '@/client/utils': '/app/utils',
-      '@/client/components': '/app/components',
     },
   },
 });
