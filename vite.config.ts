@@ -7,6 +7,7 @@ export default defineConfig({
   plugins: [solidPlugin()],
   build: {
     outDir: '../../src/server/public',
+    emptyOutDir: true,
   },
   resolve: {
     alias: {
