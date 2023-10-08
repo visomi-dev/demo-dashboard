@@ -3,12 +3,14 @@ import { swagger } from '@elysiajs/swagger';
 import { cors } from '@elysiajs/cors';
 import { html } from '@elysiajs/html';
 import { staticPlugin } from '@elysiajs/static';
+import { logger } from '@bogeychan/elysia-logger';
 
 import { setup } from './setup';
 import { authentication } from './routes/authentication';
 
 const app = new Elysia()
   .use(setup)
+  .use(logger())
   .use(html())
   .use(cors())
   .use(swagger())

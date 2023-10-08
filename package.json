@@ -17,6 +17,7 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@bogeychan/elysia-logger": "^0.0.11",
     "@elysiajs/cors": "^0.7.1",
     "@elysiajs/eden": "^0.7.4",
     "@elysiajs/html": "^0.7.0",

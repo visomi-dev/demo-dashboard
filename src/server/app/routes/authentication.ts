@@ -63,6 +63,8 @@ export const authentication = new Elysia({
   .post(
     '/sign-in',
     async ({ jwt, body }) => {
+      console.log(body);
+
       const user = await db.query.users.findFirst({
         where: (users, { eq }) => eq(users.username, body.username),
       });

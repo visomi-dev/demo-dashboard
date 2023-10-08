@@ -23,7 +23,6 @@ RUN curl -fsSL https://deb.nodesource.com/setup_current.x | bash - && \
 
 RUN /root/.bun/bin/bun install --ignore-scripts
 
-RUN echo VITE_API_URL="/" > .env
 RUN /root/.bun/bin/bun run build:client
 
 FROM dependencies as modules
