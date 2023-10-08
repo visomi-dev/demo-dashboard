@@ -9,7 +9,6 @@ RUN curl https://bun.sh/install | bash
 
 FROM dependencies as builder
 
-COPY prisma prisma
 COPY src src
 COPY package.json .
 COPY bun.lockb .
