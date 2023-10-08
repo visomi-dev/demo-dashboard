@@ -16,6 +16,14 @@
   "[dockerfile]": {
     "editor.defaultFormatter": "ms-azuretools.vscode-docker"
   },
+  "workbench.iconTheme": "material-icon-theme",
+  "material-icon-theme.activeIconPack": "none",
+  "emmet.includeLanguages": {
+    "typescriptreact": "html"
+  },
+  "emmet.preferences": {
+    "output.selfClosingStyle": "xhtml"
+  },
   "cSpell.words": [
     "branchlint",
     "clsx",
