@@ -22,5 +22,5 @@
       "@/client/components/*": ["./src/client/app/components/*"]
     }
   },
-  "include": ["vite.config.ts", "src/**/*"]
+  "include": ["vite.config.ts", "drizzle.config.ts", "src/**/*", "bin/**/*"]
 }
