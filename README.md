@@ -1,4 +1,4 @@
-# Elysia with Bun runtime
+# Elysia with Bun runtime + Solidjs with Vite
 
 This project is a Elysia + Solidjs App. The project is configured to use the [ESLint](https://eslint.org/) linter and [Prettier](https://prettier.io/) code formatter and follows the [StandardJS](https://standardjs.com/) code style.
 The project is configured to use [Prisma](https://www.prisma.io/) as an ORM and [PostgreSQL](https://www.postgresql.org/) as a database.
