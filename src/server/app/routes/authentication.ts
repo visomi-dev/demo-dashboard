@@ -1,7 +1,9 @@
 import Elysia, { t } from 'elysia';
 
-import db from '../db/client';
 import { setup } from '../setup';
+
+import { db } from '../db/client';
+import { users } from '../db/schema';
 
 export const authentication = new Elysia({
   prefix: '/api/auth',
@@ -14,12 +16,13 @@ export const authentication = new Elysia({
 
       const hash = await Bun.password.hash(password);
 
-      const user = await db.user.create({
-        data: {
+      const [user] = await db
+        .insert(users)
+        .values({
           username,
           password: hash,
-        },
-      });
+        })
+        .returning();
 
       const token = await jwt.sign({ id: user.id });
 
@@ -60,10 +63,8 @@ export const authentication = new Elysia({
   .post(
     '/sign-in',
     async ({ jwt, body }) => {
-      const user = await db.user.findUnique({
-        where: {
-          username: body.username,
-        },
+      const user = await db.query.users.findFirst({
+        where: (users, { eq }) => eq(users.username, body.username),
       });
 
       if (user == null) {
@@ -119,14 +120,13 @@ export const authentication = new Elysia({
 
       const verified = await jwt.verify(token);
 
-      if (verified == null || verified === false) {
+      if (verified === false || verified?.sub == null) {
         throw new Error('INVALID_TOKEN');
       }
 
-      const user = await db.user.findUnique({
-        where: {
-          id: verified.sub,
-        },
+      const user = await db.query.users.findFirst({
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        where: (users, { eq }) => eq(users.id, verified.sub!),
       });
 
       if (user == null) {
