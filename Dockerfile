@@ -37,7 +37,7 @@ WORKDIR /app
 
 COPY --from=dependencies /root/.bun/bin/bun bun
 COPY --from=modules node_modules node_modules
-COPY --from=builder src/client src/client
+COPY --from=builder src/server/public src/server/public
 
 COPY src src
 COPY tsconfig.json .
